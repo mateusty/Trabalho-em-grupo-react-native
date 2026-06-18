@@ -10,7 +10,6 @@ export function StackRouter() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="StackLogin" component={Login} />
-      <Stack.Screen name="DrawerRouter" component={DrawerRouter} />
     </Stack.Navigator>
   );
 }
