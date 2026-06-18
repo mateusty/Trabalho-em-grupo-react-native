@@ -1,13 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { Obstacle } from '../../types/obstacle'
 
-export default function ObstacleComponents() {
+export default function ObstacleCard({categoria,gravidade,descricao,data_criacao}:Obstacle) {
     return (
-        <>
-            <Text>Categoria</Text>
-            <Text>Gravidade</Text>
-            <Text></Text>
-            <Text>{ }</Text>
-        </>
+        <View>
+            <Text>{categoria}</Text>
+            <Text>{gravidade}</Text>
+            <Text>{descricao}</Text>
+            <Text>{data_criacao}</Text>
+        </View>
     )
 }

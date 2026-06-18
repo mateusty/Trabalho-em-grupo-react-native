@@ -2,8 +2,11 @@ export type ObstacleCategory =
   | 'buraco'
   | 'rampa_bloqueada'
   | 'elevador_quebrado'
-  | 'semaforo_sonoro'
   | 'objeto_aereo'
+  | 'calcada_obstruida'
+  | 'semaforo_quebrado'  
+  | 'falta_de_acessibilidade' 
+  | 'outro';
 
 export type GravityLevel = 'baixa' | 'media' | 'alta'
 
