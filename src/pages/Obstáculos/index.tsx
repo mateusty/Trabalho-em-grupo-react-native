@@ -1,7 +1,8 @@
-import { View } from "react-native"
+import { FlatList, View } from "react-native"
+import ObstacleComponents from "../../components/ObstacleCard"
 
 export const Obstaculos = () => {
   return (
-    <View>Obstaculos</View>
+      <ObstacleComponents></ObstacleComponents>
   )
 }
