@@ -5,23 +5,21 @@ import React, { useState } from 'react'
 type SwitchButtonProps = {
   children: React.ReactNode
   style?: StyleProp<ViewStyle>
+  isActive?: boolean
   onPress?: () => void
 }
 
-export default function SwitchButton({ children, style, onPress }: SwitchButtonProps) {
-
-  const [active, setActive] = useState(false)
+export default function SwitchButton({ children, style, isActive, onPress }: SwitchButtonProps) {
 
   return (
     <TouchableOpacity
-      style={[styles.button, style, active && styles.buttonOn]}
+      style={[styles.button, style, isActive && styles.buttonOn]}
       onPress={() => {
-        setActive(!active)
         onPress?.()
       }}
     >
 
-      <Text style={active ? styles.textOn : styles.textOff}>
+      <Text style={isActive ? styles.textOn : styles.textOff}>
         {children}
       </Text>
 

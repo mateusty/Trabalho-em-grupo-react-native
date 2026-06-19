@@ -4,19 +4,20 @@ export const styles = StyleSheet.create({
 
 button: {
     backgroundColor: '#F8F9FA',
-    borderWidth: 1,
-    borderRadius: 15,
-    borderColor: '#777',
-    padding: 15,
+    borderRadius: 24,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
 },
 buttonOn: {
     backgroundColor: '#1A1A1A',
 },
 textOn: {
+    fontWeight: '600',
     color: '#FFF',
-    fontSize: 15,
+    fontSize: 16,
 },
 textOff: {
-    fontSize: 15,
+    fontWeight: '600',
+    fontSize: 16,
 },
 })
