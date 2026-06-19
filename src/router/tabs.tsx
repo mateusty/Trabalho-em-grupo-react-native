@@ -36,6 +36,8 @@ export function TabsRouter() {
       tabBarActiveTintColor: '#3B75B0',
       tabBarInactiveTintColor: '#494949',
     }}>
+      <Tab.Screen name="TabsHome" component={Home} />
+      <Tab.Screen name="TabsMapa" component={Map} />
 
       <Tab.Screen name="TabsHome" component={Home} options={{
         tabBarIcon: ({focused, color, size}) => (
