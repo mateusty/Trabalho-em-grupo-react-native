@@ -31,3 +31,4 @@ export interface Obstacle {
 
 
 export type NewObstacle = Omit<Obstacle, 'id' | 'data_criacao'>
+export type ObstacleCardType = Omit<Obstacle, 'profile_id' | 'latitude' | 'longitude' | 'foto_url'>

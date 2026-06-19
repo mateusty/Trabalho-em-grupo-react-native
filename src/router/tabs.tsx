@@ -5,7 +5,7 @@ import { Sobre } from '../pages/Sobre';
 import { DrawerActions } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Map } from '../pages/Map';
-import { Obstaculos } from '../pages/Obstaculos';
+import { Obstacles } from '../pages/Obstacles';
 import { Ionicons } from '@expo/vector-icons';
 import { Form } from '../pages/Form';
 import { View } from 'react-native';
@@ -43,7 +43,7 @@ export function TabsRouter() {
         )
       }}/>
 
-      <Tab.Screen name="TabsObstaculos" component={Home} options={{
+      <Tab.Screen name="TabsObstaculos" component={Obstacles} options={{
         tabBarActiveTintColor: '#D83025',
         tabBarIcon: ({focused, color, size}) => (
           <Ionicons name={!focused ? 'warning-outline' : 'warning'} color={color} size={size + 4} />
