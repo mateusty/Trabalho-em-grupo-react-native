@@ -13,16 +13,6 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
         if (gravidade === 'media') return 'Média'
         if (gravidade === 'alta') return 'Crítica'
     }
-    function tituloCategoria(categoria: string) {
-        if (categoria === 'buraco') return 'Buraco'
-        if (categoria === 'rampa_bloqueada') return 'Rampa bloqueada' 
-        if (categoria === 'elevador_quebrado') return 'Elevador quebrado'
-        if (categoria === 'objeto_aereo') return 'Objeto aereo'
-        if (categoria === 'calcada_obstruida') return 'Calcada obstruida'
-        if (categoria === 'semaforo_quebrado') return 'Semafaro quebrado'
-        if (categoria === 'falta_de_acessibilidade') return 'Falta de acessibilidade'
-        if (categoria === 'outro') return 'Outro'
-    }
     return (
         <View style={styles.container}>
 
@@ -32,7 +22,7 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
             <View style={styles.wrapper}>
 
                 <Text style={styles.categoria}>
-                    {tituloCategoria(categoria)}
+                    {categoria}
                 </Text>
                 <Text style={styles.descricao}>
                     {descricao}

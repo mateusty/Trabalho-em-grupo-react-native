@@ -28,13 +28,7 @@ export const styles = StyleSheet.create({
         marginBottom: 30,
         gap: 7
     },
-    filtersButton: {
-        backgroundColor: '#F8F9FA',
-        borderWidth: 1,
-        borderRadius: 15,
-        borderColor: '#777',
-        padding: 10,
-    },
+
     obstacles: {
         backgroundColor: '#F8F9FA',
         borderWidth: 1,
