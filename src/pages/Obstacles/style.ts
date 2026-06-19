@@ -31,10 +31,6 @@ export const styles = StyleSheet.create({
 
     obstacles: {
         backgroundColor: '#F8F9FA',
-        borderWidth: 1,
-        borderRadius: 15,
-        borderColor: '#777',
-
-    },
-
+        borderRadius: 15
+    }
 })

@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderRadius: 15,
-        borderBottomColor: '#777',
+        borderBottomColor: '#1A1A1A',
         padding: 15,
 
     },

@@ -6,8 +6,11 @@ import SwitchButton from "../../components/SwitchButton"
 
 export const Obstacles = () => {
   return (
+
     <SafeAreaView style={styles.container}>
+
       <View style={styles.wrapper}>
+        
         <FlatList
           data={[]}
           renderItem={() => null}
@@ -22,21 +25,15 @@ export const Obstacles = () => {
 
               <View style={styles.filtersWrapper}>
 
-                <SwitchButton >Botões de filtro</SwitchButton>
-                <SwitchButton >Botões de filtro</SwitchButton>
-                <SwitchButton >Botões de filtro</SwitchButton>
-                <SwitchButton >Botões de filtro</SwitchButton>
-                <SwitchButton >Botões de filtro</SwitchButton>
+                <SwitchButton >Visual</SwitchButton>
+                <SwitchButton >Cadeirante</SwitchButton>
+                <SwitchButton >Mobilidade reduzida</SwitchButton>
+                <SwitchButton >Outro</SwitchButton>
 
               </View>
 
               <View style={styles.obstacles}>
 
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
                 <ObstacleFlatlist></ObstacleFlatlist>
                 <ObstacleFlatlist></ObstacleFlatlist>
                 <ObstacleFlatlist></ObstacleFlatlist>
