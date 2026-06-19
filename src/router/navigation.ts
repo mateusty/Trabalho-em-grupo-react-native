@@ -5,6 +5,7 @@ export type ParametrosRotasStack = {
 
 export type ParametrosRotasTabs = {
   TabsHome: undefined;
+  TabsObstaculos: undefined;
   TabsMapa: undefined;
   OpenDrawer: undefined;
 };

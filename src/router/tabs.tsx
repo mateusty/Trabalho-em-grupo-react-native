@@ -33,6 +33,7 @@ export function TabsRouter() {
       tabBarInactiveTintColor: '#E3E4E9'
     }}>
       <Tab.Screen name="TabsHome" component={Home} />
+      <Tab.Screen name="TabsObstaculos" component={Obstaculos}/>
       <Tab.Screen name="TabsMapa" component={Map} />
       <Tab.Screen
         name="OpenDrawer"
@@ -43,10 +44,6 @@ export function TabsRouter() {
             navigation.dispatch(DrawerActions.openDrawer());
           },
         })}
-      />
-      <Tab.Screen
-        name="OpenDrawer"
-        component={Obstaculos}
       />
 
     </Tab.Navigator>

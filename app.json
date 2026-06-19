@@ -22,8 +22,8 @@
       [
         "react-native-maps",
         {
-          "androidGoogleMapsApiKey": "",
-          "iosGoogleMapsApiKey": ""
+          "androidGoogleMapsApiKey": "CHAVEAPI",
+          "iosGoogleMapsApiKey": "CHAVEAPI"
         }
       ]
     ]
