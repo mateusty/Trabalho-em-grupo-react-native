@@ -33,8 +33,8 @@ export function TabsRouter() {
         height: 50 + insets.bottom,
         justifyContent: 'center',
       },
-      tabBarActiveTintColor: '#3B75B0', // possívelmente mudar as cores depois
-      tabBarInactiveTintColor: '#777777',
+      tabBarActiveTintColor: '#3B75B0',
+      tabBarInactiveTintColor: '#494949',
     }}>
 
       <Tab.Screen name="TabsHome" component={Home} options={{
@@ -61,7 +61,7 @@ export function TabsRouter() {
       <Tab.Screen name="TabsMapa" component={Map} options={{
         tabBarActiveTintColor: '#109D57',
         tabBarIcon: ({focused, color, size}) => (
-          <Ionicons name={!focused ? 'map-outline' : 'map'} color={color} size={size + 4} />
+          <Ionicons name={!focused ? 'location-outline' : 'location'} color={color} size={size + 4} />
         )
       }}/>
 
