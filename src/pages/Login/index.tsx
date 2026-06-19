@@ -6,7 +6,7 @@ export const Login = () => {
     const navigate = useNavigation();
 
   return (
-    <View>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Pressable onPress={() => navigate.navigate('DrawerRouter')}>
             <Text>Go Home</Text>
         </Pressable>

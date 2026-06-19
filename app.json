@@ -5,17 +5,27 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE"
 
-      },
+    "android": {
+      "package": "com.geowatch.vialivre",
+      "versionCode": 1,
       "predictiveBackGestureEnabled": false
     },
-    "web": {
-    }
+
+    "web": {},
+
+    "plugins": [
+      [
+        "react-native-maps",
+        {
+          "androidGoogleMapsApiKey": "",
+          "iosGoogleMapsApiKey": ""
+        }
+      ]
+    ]
   }
 }

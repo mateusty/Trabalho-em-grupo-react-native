@@ -4,6 +4,7 @@ import { Home } from '../pages/Home';
 import { Sobre } from '../pages/Sobre';
 import { DrawerActions } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Map } from '../pages/Map';
 
 const Tab = createBottomTabNavigator<ParametrosRotasTabs>();
 
@@ -31,6 +32,7 @@ export function TabsRouter() {
         tabBarInactiveTintColor: '#E3E4E9' 
       }}>
       <Tab.Screen name="TabsHome" component={Home} />
+      <Tab.Screen name="TabsMapa" component={Map} />
       <Tab.Screen
         name="OpenDrawer"
         component={Sobre}
