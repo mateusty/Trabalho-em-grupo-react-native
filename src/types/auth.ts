@@ -5,4 +5,5 @@ export interface UserProfile {
   foto_url: string | null;
   tipo_deficiencia?: string | null;
   reputacao: number;
+  data_criacao: string; 
 }

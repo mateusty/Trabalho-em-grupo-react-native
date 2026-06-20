@@ -10,22 +10,28 @@ import { obterLocalizacao } from '../../services/localizacaoService';
 import { Coordenadas } from '../../types/coordenadas';
 import { KeyboardAvoidingView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { tirarFoto } from '../../services/cameraService';
-import { escolherDaGaleria } from '../../services/cameraService';
+import { tirarFoto } from '../../services/fotoService';
+import { escolherDaGaleria } from '../../services/fotoService';
+import { criarObstaculo } from '../../services/obstaculoService';
+import { DadosObstaculo } from '../../types/obstacle';
+import { useAuth } from '../../context/AuthContext';
 
 
 
 export const Form = () => {
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState<CategoriaNome | null>(null)
+  const {user} = useAuth();
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<CategoriaNome>('')
 
-  const [localizacaoUsuario, setLocalizacaoUsuario] = useState<Coordenadas | null>(null);
-  const [localizacaoSelecionada, setLocalizacaoSelecionada] = useState<Coordenadas | null>(null);
+  const [localizacaoUsuario, setLocalizacaoUsuario] = useState<Coordenadas>({latitude: 0, longitude: 0});
+  const [localizacaoSelecionada, setLocalizacaoSelecionada] = useState<Coordenadas>({latitude: 0, longitude: 0});
   const [carregandoGps, setCarregandoGps] = useState<boolean>(false);
 
   const [descricao, setDescricao] = useState<string>('');
   const [gravidade, setGravidade] = useState<string>('');
 
   const [fotos, setFotos] = useState<string[]>([]);
+
+  const [enviando, setEnviando] = useState<boolean>(false);
 
   const mapaRef = useRef<MapView | null>(null);
 
@@ -74,6 +80,57 @@ export const Form = () => {
     const uri = await escolherDaGaleria();
     if(uri){
       setFotos([...fotos, uri])
+    }
+  }
+
+  
+
+  const enviarObstaculo = async () =>{
+
+    // if (!user) {
+    //   Alert.alert('Erro de autenticação', 'Você precisa estar logado para registrar um obstáculo.');
+    //   return;
+    // }
+    if (categoriaSelecionada === '') {
+      Alert.alert('Categoria obrigatória', 'Por favor, selecione uma categoria para o obstáculo.');
+      return;
+    }
+    if ((localizacaoSelecionada.latitude === 0) || (localizacaoSelecionada.longitude === 0)) {
+      Alert.alert('Localização obrigatória', 'Por favor, selecione uma localização.');
+      return;
+    }
+    if (descricao.trim() === '') {
+      Alert.alert('Descrição obrigatória', 'Por favor, adicione uma descrição para o obstáculo.');
+      return;
+    }
+    if (gravidade === '') {
+      Alert.alert('Nível de gravidade obrigatório', 'Por favor, selecione o nível de gravidade.');
+      return;
+    }
+
+    setEnviando(true)
+
+    const dadosCriarObstaculo:DadosObstaculo = {
+      profile_id: 'a9cdc393-c0f0-4480-b4a6-28b605592119',
+      categoria: categoriaSelecionada,
+      latitude: localizacaoSelecionada.latitude,
+      longitude: localizacaoSelecionada.longitude,
+      descricao: descricao,
+      gravidade: gravidade,
+      fotos: fotos
+    }
+
+    try {
+      const resultado = await criarObstaculo(dadosCriarObstaculo);
+      if (resultado.sucesso) {
+        Alert.alert('Sucesso!', 'Obstáculo registrado com sucesso no mapa.');
+      } else {
+        Alert.alert('Erro ao salvar', 'Não foi possível enviar o relatório. Tente novamente.');
+      }
+    } catch (error) {
+      Alert.alert('Erro', 'Ocorreu um erro inesperado ao conectar com o servidor.');
+    }finally{
+      setEnviando(false)
     }
   }
 
@@ -177,7 +234,9 @@ export const Form = () => {
               )}
             </MapView>
 
-            <TouchableOpacity 
+            
+          </View>
+          <TouchableOpacity 
               style={styles.botaoGps} 
               onPress={carregarGps}
               disabled={carregandoGps}
@@ -185,12 +244,11 @@ export const Form = () => {
               accessibilityLabel="Centralizar mapa na minha localização atual"
             >
               {carregandoGps ? (
-                <ActivityIndicator color="#1A1A1A" />
+                <ActivityIndicator color="white" />
               ) : (
                 <Text style={styles.textoBotaoGps}>Localização Atual</Text>
               )}
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
 
           {localizacaoSelecionada && (
             <Text 
@@ -203,20 +261,7 @@ export const Form = () => {
           )}
         </View>
 
-        {/* CONTAINER DE DESCRIÇÃO */}
-        <View style={styles.subContainer}>
-          <Text style={styles.titulo}>Descrição</Text>
-          <TextInput style={styles.inputDescricao} 
-            placeholder='Descreva o problema com detalhes e pontos de referência (Ex: Carro estacionado na rampa ao lado da farmácia, buraco profundo na calçada, galho caído...)' 
-            placeholderTextColor={'#9c9c9c'} 
-            onChangeText={setDescricao}
-            multiline={true}
-            maxLength={250}
-            accessibilityLabel="Campo de texto para descrição detalhada do obstáculo"
-            accessibilityHint="Digite aqui detalhes como pontos de referência ou o tamanho do problema para ajudar outras pessoas."
-          >
-          </TextInput>
-        </View>
+        
         
         {/* CONTAINER DE IMAGEM */}
         <View style={styles.subContainer}>
@@ -256,8 +301,34 @@ export const Form = () => {
               )}
           />
         </View>
-      
 
+
+        {/* CONTAINER DE DESCRIÇÃO */}
+        <View style={styles.subContainer}>
+          <Text style={styles.titulo}>Descrição</Text>
+          <TextInput style={styles.inputDescricao} 
+            placeholder='Descreva o problema com detalhes e pontos de referência (Ex: Carro estacionado na rampa ao lado da farmácia, buraco profundo na calçada, galho caído...)' 
+            placeholderTextColor={'#9c9c9c'} 
+            onChangeText={setDescricao}
+            multiline={true}
+            maxLength={250}
+            accessibilityLabel="Campo de texto para descrição detalhada do obstáculo"
+            accessibilityHint="Digite aqui detalhes como pontos de referência ou o tamanho do problema para ajudar outras pessoas."
+          >
+          </TextInput>
+        </View>
+              
+        <TouchableOpacity 
+          style={styles.botaoEnviar} 
+          onPress={enviarObstaculo}
+          disabled={enviando}
+        >
+          {enviando ? (
+                <ActivityIndicator color="white" />
+              ) : (
+                <Text style={[styles.textoBotaoGps, {fontSize: 16}]}>Enviar relato</Text>
+          )}
+        </TouchableOpacity>      
       </ScrollView>
     </KeyboardAvoidingView>
   )

@@ -47,29 +47,23 @@ export const styles = StyleSheet.create({
         overflow: 'hidden',
         borderWidth: 2,
         borderColor: '#E2E2E2',
-        marginTop: 10,
-        position: 'relative', 
+        marginTop: 10, 
     },
     mapa: {
         width: '100%',
         height: '100%',
     },
     botaoGps: {
-        position: 'absolute',
-        bottom: 12,
-        right: 12,
-        backgroundColor: '#E2E2E2',
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#1A1A1A',
-        elevation: 3, 
+        backgroundColor: '#3B75B0',
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10
     },
     textoBotaoGps: {
         fontSize: 12,
-        fontWeight: 'bold',
-        color: '#1A1A1A',
+        fontFamily: 'Montserrat-Bold',
+        color: 'white',
     },
     labelCoordenadas:{
         fontSize: 11, 
@@ -153,5 +147,17 @@ export const styles = StyleSheet.create({
          color: 'white', 
          fontSize: 10, 
          fontWeight: 'bold' 
+    },
+    botaoEnviar:{
+        backgroundColor: '#3B75B0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+        borderRadius: 12
+    },
+    textoBotaoEnviar:{
+        color: 'white',
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 16
     }
 })

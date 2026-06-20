@@ -32,3 +32,15 @@ export interface Obstacle {
 
 export type NewObstacle = Omit<Obstacle, 'id' | 'data_criacao'>
 export type ObstacleCardType = Omit<Obstacle, 'profile_id' | 'latitude' | 'longitude' | 'foto_url'>
+
+
+//CRIAÇÃO DE OBJETO PARA POST OBSTACULOS
+export interface DadosObstaculo {
+    profile_id: string;
+    categoria: string;
+    latitude: number;
+    longitude: number;
+    descricao: string;
+    gravidade: string;
+    fotos: string[];
+}
