@@ -18,8 +18,8 @@
       [
         "react-native-maps",
         {
-          "androidGoogleMapsApiKey": " ",
-          "iosGoogleMapsApiKey": " "
+          "androidGoogleMapsApiKey": "",
+          "iosGoogleMapsApiKey": ""
         }
       ],
       "expo-font"
