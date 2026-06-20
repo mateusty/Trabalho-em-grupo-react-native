@@ -13,6 +13,8 @@ export type ParametrosRotasTabs = {
 
 export type ParametrosRotasDrawer = {
   TabsRouter: undefined;
+  Perfil: undefined;
+  Configuracoes: undefined;
   DrawerSobre: undefined;
 };
 

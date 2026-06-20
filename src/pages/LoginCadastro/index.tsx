@@ -387,7 +387,7 @@ const styles = {
     alignItems: 'center' as const,
   },
   tabActive: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#3B75B0',
   },
   tabText: {
     color: '#333',
@@ -422,10 +422,10 @@ const styles = {
     marginBottom: 16,
   },
   forgotPasswordText: {
-    color: '#007AFF',
+    color: '#3B75B0',
   },
   submitButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#3B75B0',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center' as const,
