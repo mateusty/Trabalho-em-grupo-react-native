@@ -11,8 +11,8 @@ export type ObstacleCategory =
 export type GravityLevel = 'resolvido' | 'intermediario' | 'inacessivel'
 
 export type DisabilityType =
+  | 'visual'  
   | 'cadeirante'
-  | 'visual'
   | 'mobilidade_reduzida'
   | 'outro'
 

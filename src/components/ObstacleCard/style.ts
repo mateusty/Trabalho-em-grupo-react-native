@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderRadius: 15,
-        borderBottomColor: '#777',
+        borderBottomColor: '#1A1A1A',
         padding: 15,
 
     },
@@ -21,10 +21,12 @@ export const styles = StyleSheet.create({
         alignSelf: 'flex-start',
     },
     gravidade: {
+        color:'#FFF',
         fontSize: 20,
         borderRadius: 25,
         padding: 10,
         alignSelf: 'flex-start',
+        fontWeight:'500'
     },
     wrapper: {
         flexDirection: 'column',

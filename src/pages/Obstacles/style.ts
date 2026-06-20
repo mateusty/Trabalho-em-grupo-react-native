@@ -23,18 +23,16 @@ export const styles = StyleSheet.create({
     },
     filtersWrapper: {
         flexWrap: 'wrap',
-        flexDirection: 'row',
+        flexDirection: 'column',
         borderRadius: 15,
         marginBottom: 30,
-        gap: 7
+        gap: 7,
+        
     },
 
     obstacles: {
         backgroundColor: '#F8F9FA',
-        borderWidth: 1,
-        borderRadius: 15,
-        borderColor: '#777',
-
-    },
+        borderRadius: 15
+    }
 
 })

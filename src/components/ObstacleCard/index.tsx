@@ -12,9 +12,9 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
         if (categoria === 'buraco') return 'Buraco'
         if (categoria === 'rampa_bloqueada') return 'Rampa bloqueada' 
         if (categoria === 'elevador_quebrado') return 'Elevador quebrado'
-        if (categoria === 'objeto_aereo') return 'Objeto aereo'
-        if (categoria === 'calcada_obstruida') return 'Calcada obstruida'
-        if (categoria === 'semaforo_quebrado') return 'Semafaro quebrado'
+        if (categoria === 'objeto_aereo') return 'Objeto aéreo'
+        if (categoria === 'calcada_obstruida') return 'Calçada obstruida'
+        if (categoria === 'semaforo_quebrado') return 'Semáfaro quebrado'
         if (categoria === 'falta_de_acessibilidade') return 'Falta de acessibilidade'
         if (categoria === 'outro') return 'Outro'
     }
