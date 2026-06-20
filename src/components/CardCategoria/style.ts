@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+
 export const styles = StyleSheet.create({
     botaoCategoria:{
         padding: 10,
@@ -8,7 +9,8 @@ export const styles = StyleSheet.create({
         height: 70,
         justifyContent: 'center',
         flexGrow: 1,
-        backgroundColor: '#F8F9FA'
+        borderColor: 'rgba(160, 160, 160, 0.42)',
+        borderWidth: 1
     },
     labelBotao:{
         textAlign: 'center',
@@ -18,8 +20,9 @@ export const styles = StyleSheet.create({
         textAlign: 'center'
     },
     botaoSelecionado:{
-        backgroundColor: '#e2e2e2',
+        backgroundColor: '#EAF1F8',
         borderWidth: 2,
-        borderColor: '#f8f9fa'
+        borderColor: '#D4E1EF',
+        opacity: 1
     }
 })
