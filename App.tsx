@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import { ActivityIndicator, View } from 'react-native';
-
 export default function App() {
   const [fontsCarregadas] = useFonts({
     'Montserrat-Bold': Montserrat_700Bold,

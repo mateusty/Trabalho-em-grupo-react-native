@@ -1,7 +1,6 @@
 import * as FotoGerenciador from 'expo-image-picker';
 import { Alert } from 'react-native';
 import { supabase } from './supabaseClient';
-import * as base64JS from 'base64-js';
 import { File } from 'expo-file-system';
 
 export const tirarFoto = async ():Promise<string | undefined> => {
