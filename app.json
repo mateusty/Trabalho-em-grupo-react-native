@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "ViaLivre",
+    "slug": "ViaLivre",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.projnative.vialivre",
+      "versionCode": 1,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {},
+    "plugins": [
+      [
+        "react-native-maps",
+        {
+          "androidGoogleMapsApiKey": "",
+          "iosGoogleMapsApiKey": ""
+        }
+      ],
+      "expo-font"
+    ]
+  }
+}
