@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { View, Text, FlatList, ActivityIndicator, RefreshControl, ListRenderItem } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation, DrawerActions } from '@react-navigation/native'
 import { HeaderHome } from '../../components/HeaderHome'
@@ -118,17 +119,17 @@ export const Home = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView edges={['top']} style={styles.container}>
         <HeaderHome fotoUrl={user?.foto_url} onAvatarPress={handleAvatarPress} />
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#1565C0" />
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <HeaderHome fotoUrl={user?.foto_url} onAvatarPress={handleAvatarPress} />
       <FlatList
         data={obstaculos}
@@ -141,6 +142,6 @@ export const Home = () => {
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} colors={['#1565C0']} tintColor="#1565C0" />
         }
       />
-    </View>
+    </SafeAreaView>
   )
 }
