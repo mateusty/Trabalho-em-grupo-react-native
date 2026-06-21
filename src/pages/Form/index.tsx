@@ -401,8 +401,7 @@ export const Form = () => {
               accessibilityLabel="Campo de texto para digitação do endereço completo"
               accessibilityHint="Digite o local do obstáculo com rua, número, bairro e cidade."
             />
-
-            {/* Ações do Modal usando seu componente customizado Botao */}
+            
             <View style={styles.modalContainerBotoes}>
               <View style={{ flex: 1 }}>
                 <Botao
