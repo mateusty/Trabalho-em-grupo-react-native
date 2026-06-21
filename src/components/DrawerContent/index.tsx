@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { useAuth } from '../../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 import Toast from 'react-native-toast-message';
 
-export const DrawerContent = (props: any) => {
+export const DrawerContent = (props: DrawerContentComponentProps) => {
   const { signOut } = useAuth();
 
   const handleLogout = async () => {
