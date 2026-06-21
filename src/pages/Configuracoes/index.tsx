@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Alert, Linking, StyleSheet, Switch } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
-import * as Notifications from 'expo-notifications';
 import Toast from 'react-native-toast-message';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -11,7 +10,6 @@ export const Configuracoes = () => {
     camera: false,
     galeria: false,
     localizacao: false,
-    notificacoes: false,
   });
 
   // Verificar permissões ao montar
@@ -20,13 +18,11 @@ export const Configuracoes = () => {
       const camera = (await ImagePicker.getCameraPermissionsAsync()).granted;
       const galeria = (await ImagePicker.getMediaLibraryPermissionsAsync()).granted;
       const localizacao = (await Location.getForegroundPermissionsAsync()).granted;
-      const notificacoes = (await Notifications.getPermissionsAsync()).granted;
 
       setPermissoes({
         camera: camera || false,
         galeria: galeria || false,
         localizacao: localizacao || false,
-        notificacoes: notificacoes || false,
       });
     };
     checkPermissions();
@@ -44,7 +40,7 @@ export const Configuracoes = () => {
   };
 
   // Função para pedir ou gerenciar permissão
-  const handlePermissionToggle = async (tipo: 'camera' | 'galeria' | 'localizacao' | 'notificacoes') => {
+  const handlePermissionToggle = async (tipo: 'camera' | 'galeria' | 'localizacao' ) => {
     try {
       // Se já estiver concedida, oferece opção de revogar (abrir configurações)
       if (permissoes[tipo]) {
@@ -106,20 +102,6 @@ export const Configuracoes = () => {
           }
           break;
         }
-        case 'notificacoes': {
-          const result = await Notifications.requestPermissionsAsync();
-          granted = result.status === 'granted';
-          message = granted ? 'Notificações ativadas!' : 'Notificações negadas.';
-          if (!granted && !result.canAskAgain) {
-            Alert.alert(
-              'Permissão negada permanentemente',
-              'Para receber notificações, ative a permissão nas configurações do dispositivo.',
-              [{ text: 'Cancelar', style: 'cancel' }, { text: 'Abrir configurações', onPress: openAppSettings }]
-            );
-            return;
-          }
-          break;
-        }
         default:
           return;
       }
@@ -163,13 +145,6 @@ export const Configuracoes = () => {
         description="Acesso à localização para mapas"
         isGranted={permissoes.localizacao}
         onToggle={() => handlePermissionToggle('localizacao')}
-      />
-      <PermissionItem
-        label="Notificações"
-        icon="notifications-outline"
-        description="Receber alertas do ViaLivre"
-        isGranted={permissoes.notificacoes}
-        onToggle={() => handlePermissionToggle('notificacoes')}
       />
 
       <View style={styles.divider} />
