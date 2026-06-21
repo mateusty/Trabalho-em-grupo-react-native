@@ -6,6 +6,7 @@ import Toast from 'react-native-toast-message';
 import { Ionicons } from '@expo/vector-icons';
 import ObstacleCard from '../../components/ObstacleCard';
 import { GravityLevel, ObstacleCardType, ObstacleCategory } from '../../types/obstacle';
+import { UserProfile } from '../../types/auth';
 
 const DEFAULT_AVATAR = require('../../assets/avatar.png');
 
@@ -150,7 +151,7 @@ export const Perfil = () => {
   const handleUpdateProfile = async () => {
     try {
       // Atualizar nome e email (se for diferente e não for Google)
-      const updates: any = {};
+      const updates: Partial<UserProfile> = {};
       if (newNome.trim() && newNome !== user?.nome) updates.nome = newNome.trim();
       if (newEmail.trim() && newEmail !== user?.email && !isGoogleUser) updates.email = newEmail.trim();
 
