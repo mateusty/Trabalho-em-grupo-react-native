@@ -26,7 +26,7 @@ export function DrawerRouter() {
           borderRadius: 3,
         },
         drawerType: 'slide',
-        swipeEdgeWidth: 250,
+        swipeEdgeWidth: 100,
         drawerActiveTintColor: '#3B75B0',
         drawerInactiveTintColor: '#777777',
         drawerActiveBackgroundColor: '#3B75B030',

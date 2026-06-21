@@ -44,7 +44,7 @@ export const obterObstaculos = async () => {
     const { data, error } = await supabase
       .from('obstaculos')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('data_criacao', { ascending: false });
 
     if (error) throw error;
 
