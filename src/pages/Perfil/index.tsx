@@ -37,7 +37,7 @@ const isValidGravity = (value: string): value is GravityLevel => {
 };
 
 // Mapeia os dados do Supabase para ObstacleCardType
-const mapObstacleToCard = (item: any): ObstacleCardType => ({
+const mapObstacleToCard = (item: Obstaculo): ObstacleCardType => ({
   id: item.id,
   data_criacao: new Date(item.data_criacao).toLocaleDateString('pt-BR'),
   categoria: isValidCategory(item.categoria) ? item.categoria : 'outro',

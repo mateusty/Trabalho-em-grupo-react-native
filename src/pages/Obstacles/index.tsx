@@ -8,8 +8,8 @@ import { DisabilityType } from "../../types/obstacle"
 
 export const Obstacles = () => {
 
-const [filtro, setFiltro] = useState<DisabilityType | null>(null)
-
+  const [disabilityFilter, setDisabilityFilter] = useState<DisabilityType | null>(null)
+  const [showFixed, setShowFixed] = useState(false)
 
   return (
 
@@ -26,29 +26,57 @@ const [filtro, setFiltro] = useState<DisabilityType | null>(null)
               <View style={styles.warning}>
 
                 <Text>avisos</Text>
-              
+
               </View>
 
               <View style={styles.filtersWrapper}>
+
+                <SwitchButton
+                  isActive={showFixed}
+                  onPress={() => setShowFixed(!showFixed)}
+                >
+                  Mostrar ocorrencias resolvidas
+                </SwitchButton>
+
                 <Text>Filtrar por: </Text>
-                <SwitchButton isActive={filtro === 'visual'} onPress={()=> setFiltro(filtro === 'visual' ? null : 'visual')}>Visual</SwitchButton>
-                <SwitchButton isActive={filtro === 'cadeirante'} onPress={()=> setFiltro(filtro === 'cadeirante' ? null : 'cadeirante')}>Cadeirante</SwitchButton>
-                <SwitchButton isActive={filtro === 'mobilidade_reduzida'} onPress={()=> setFiltro(filtro === 'mobilidade_reduzida' ? null : 'mobilidade_reduzida')}>Mobilidade reduzida</SwitchButton>
-                <SwitchButton isActive={filtro === 'outro'} onPress={()=> setFiltro(filtro === 'outro' ? null : 'outro')}>Outro</SwitchButton>
+
+                <SwitchButton
+                  isActive={disabilityFilter === 'visual'}
+                  onPress={() => setDisabilityFilter(disabilityFilter === 'visual' ? null : 'visual')}
+                >
+                  Visual
+                </SwitchButton>
+
+                <SwitchButton
+                  isActive={disabilityFilter === 'cadeirante'}
+                  onPress={() => setDisabilityFilter(disabilityFilter === 'cadeirante' ? null : 'cadeirante')}
+                >
+                  Cadeirante
+                </SwitchButton>
+
+                <SwitchButton
+                  isActive={disabilityFilter === 'mobilidade_reduzida'}
+                  onPress={() => setDisabilityFilter(disabilityFilter === 'mobilidade_reduzida' ? null : 'mobilidade_reduzida')}
+                >
+                  Mobilidade reduzida
+                </SwitchButton>
+
+                <SwitchButton
+                  isActive={disabilityFilter === 'outro'}
+                  onPress={() => setDisabilityFilter(disabilityFilter === 'outro' ? null : 'outro')}
+                >
+                  Outro
+                </SwitchButton>
+
+
 
               </View>
 
               <View style={styles.obstacles}>
 
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
-                <ObstacleFlatlist></ObstacleFlatlist>
+                <ObstacleFlatlist showFixed={showFixed} filter={disabilityFilter}></ObstacleFlatlist>
 
               </View>
-
             </>
           }
         />

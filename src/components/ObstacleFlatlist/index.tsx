@@ -1,16 +1,49 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import ObstacleCard from '../ObstacleCard'
+import { obterObstaculos } from '../../services/obstaculoService'
+import { useEffect, useState } from 'react'
+import { DisabilityType, DisabilityTypeByCategory, Obstacle } from '../../types/obstacle'
 
-export default function ObstacleFlatlist() {
-  return (<>
-    <ObstacleCard id={0} data_criacao={'12/12/2012'} categoria={'buraco'} gravidade={'resolvido'} descricao={'dfsfrgretgfdbgfgsujyfhfghdytu'} ></ObstacleCard>
-    <ObstacleCard id={0} data_criacao={'12/12/2012'} categoria={'falta_de_acessibilidade'} gravidade={'intermediario'} descricao={'dfsfrgretgfdbgfgsujyfhfghdytu'} ></ObstacleCard>
-    <ObstacleCard id={0} data_criacao={'12/12/2012'} categoria={'elevador_quebrado'} gravidade={'inacessivel'} descricao={'dfsfrgretgfdbgfgsujyfhfghdytu'} ></ObstacleCard>
-  </>
-    // <FlatList
-    //     data={data}
-    //     keyExtractor={data.id}
-    //     renderItem={({item})=>{<ObstacleCard categoria={item.categoria} gravidade={item.gravidade} descricao={item.descricao} data_criacao={item.data_criacao} />}}
-    // ></FlatList>
+type ObstacleFlatlistProps = {
+  filter?: DisabilityType | null
+  showFixed?: boolean
+}
+
+export default function ObstacleFlatlist({ filter, showFixed = false }: ObstacleFlatlistProps) {
+
+  const [obstacles, setObstacles] = useState<Obstacle[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const buscar = async () => {
+      const response = await obterObstaculos()
+      if (response.sucesso) setObstacles(response.data ?? [])
+      setLoading(false)
+    }
+    buscar()
+  }, [])
+
+  const filteredObstacles = obstacles.filter(obstacle => showFixed || obstacle.gravidade !== 'resolvido')
+    .filter(obstacle => !filter || DisabilityTypeByCategory[filter].includes(obstacle.categoria))
+
+
+  if (loading) return <ActivityIndicator />
+
+  return (
+    <>
+      <FlatList
+        data={filteredObstacles}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <ObstacleCard
+            categoria={item.categoria}
+            gravidade={item.gravidade}
+            descricao={item.descricao}
+            data_criacao={item.data_criacao}
+            id={item.id}
+          />
+        )}
+      />
+    </>
   )
 }

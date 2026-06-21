@@ -1,5 +1,4 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { LoginCadastro } from '../pages/LoginCadastro';
 import { DrawerRouter } from './drawer';
 import { useAuth } from '../context/AuthContext';
 
@@ -12,11 +11,9 @@ export function StackRouter() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!shouldRedirect ? (
-        <Stack.Screen name="Login" component={LoginCadastro} />
-      ) : (
+
         <Stack.Screen name="Drawer" component={DrawerRouter} />
-      )}
+
     </Stack.Navigator>
   );
 }
