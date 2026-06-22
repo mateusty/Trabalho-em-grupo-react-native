@@ -23,13 +23,17 @@ export const Obstacles = () => {
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={
             <>
-              <View style={styles.warning}>
+              <View style={styles.warning} accessible={true}>
 
-                <Text>avisos</Text>
+                <Text accessibilityRole="header">Avisos</Text>
 
               </View>
 
-              <View style={styles.filtersWrapper}>
+              <View 
+                style={styles.filtersWrapper}
+                accessibilityRole="tablist"
+                accessibilityLabel="Filtros de ocorrências"
+              >
 
                 <SwitchButton
                   isActive={showFixed}
@@ -38,7 +42,12 @@ export const Obstacles = () => {
                   Mostrar ocorrencias resolvidas
                 </SwitchButton>
 
-                <Text>Filtrar por: </Text>
+                <Text 
+                  accessibilityRole="header"
+                  aria-level={2}
+                >
+                  Filtrar por: 
+                </Text>
 
                 <SwitchButton
                   isActive={disabilityFilter === 'visual'}
@@ -72,7 +81,10 @@ export const Obstacles = () => {
 
               </View>
 
-              <View style={styles.obstacles}>
+              <View 
+                style={styles.obstacles}
+                accessibilityLabel="Lista de obstáculos relatados"
+              >
 
                 <ObstacleFlatlist showFixed={showFixed} filter={disabilityFilter}></ObstacleFlatlist>
 
