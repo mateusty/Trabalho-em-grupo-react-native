@@ -15,6 +15,7 @@ A ideia do aplicativo e garantir o acesso e o direito de ir e vir à todos indep
     npx expo run:android
     ```
   para instalar as pastas `node_modules` e `android`.
+  
   _disclaimer.: pode ser necessário outros comandos, sofremos na mão do Android Studio, boa sorte professor_ 
 
 ## Desenvolvedores:
