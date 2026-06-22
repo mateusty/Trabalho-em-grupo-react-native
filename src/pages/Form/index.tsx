@@ -226,7 +226,8 @@ export const Form = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#3B75B0' }} edges={['top']}>
-      <KeyboardAvoidingView 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }} 
         behavior={'height'}
       >
         <View style={styles.headerRegistro} accessibilityRole="header">
