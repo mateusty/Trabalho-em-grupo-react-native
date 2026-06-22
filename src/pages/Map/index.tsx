@@ -7,13 +7,15 @@ import { Ionicons } from '@expo/vector-icons';
 import SwitchButton from '../../components/SwitchButton';
 import { useEffect, useRef, useState } from 'react';
 import { obterObstaculos } from '../../services/obstaculoService';
-import { Obstacle } from '../../types/obstacle';
+import { DisabilityType, DisabilityTypeByCategory, Obstacle } from '../../types/obstacle';
 import { Coordenadas } from '../../types/coordenadas';
 import { obterLocalizacao } from '../../services/localizacaoService';
+import { HeaderHome } from '../../components/HeaderHome';
 
 export const Map = () => {
 
   const [obstaculos, setObstaculos] = useState<Obstacle[]>([]);
+  const [obstaculosFiltrados, setObstaculosFiltrados] = useState<Obstacle[]>([]);
   const [localizacaoUsuario, setLocalizacaoUsuario] = useState<Coordenadas>({latitude: 0, longitude: 0});
   const [carregandoGps, setCarregandoGps] = useState<boolean>(false);
   const [botaoAtivo, setBotaoAtivo] = useState<string>('');
@@ -54,11 +56,19 @@ export const Map = () => {
       alert('Houve um erro ao tirar print do mapa');
     }
   };
+
+  const filtrarPins = (tipo: DisabilityType | null) => {
+    setBotaoAtivo(tipo || '');
+    setObstaculosFiltrados(
+      obstaculos.filter((obs) => !tipo || DisabilityTypeByCategory[tipo].includes(obs.categoria))
+    )
+  } 
   
   useEffect(() => {
     const carregarObstaculo = async () => {
       const data = await obterObstaculos();
       setObstaculos(data.data || [])
+      setObstaculosFiltrados(data.data || []);
     }
     carregarObstaculo()
     carregarGps();
@@ -75,10 +85,11 @@ export const Map = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.filterButtonContainer}
         >
-        <SwitchButton onPress={() => setBotaoAtivo('Cadeirante')} isActive={botaoAtivo === 'Cadeirante'}>Cadeirante</SwitchButton> 
-        <SwitchButton onPress={() => setBotaoAtivo('Visual')} isActive={botaoAtivo === 'Visual'}>Visual</SwitchButton>
-        <SwitchButton onPress={() => setBotaoAtivo('MobLimitada')} isActive={botaoAtivo === 'MobLimitada'}>Mobilidade Limitada</SwitchButton>
-        <SwitchButton onPress={() => setBotaoAtivo('Outros')} isActive={botaoAtivo === 'Outros'}>Outros</SwitchButton>
+        <SwitchButton onPress={() => filtrarPins(null)} isActive={botaoAtivo === ''}>Todos</SwitchButton> 
+        <SwitchButton onPress={() => filtrarPins('cadeirante')} isActive={botaoAtivo === 'cadeirante'}>Cadeirante</SwitchButton> 
+        <SwitchButton onPress={() => filtrarPins('visual')} isActive={botaoAtivo === 'visual'}>Visual</SwitchButton>
+        <SwitchButton onPress={() => filtrarPins('mobilidade_reduzida')} isActive={botaoAtivo === 'mobilidade_reduzida'}>Mobilidade Limitada</SwitchButton>
+        <SwitchButton onPress={() => filtrarPins('outro')} isActive={botaoAtivo === 'outro'}>Outros</SwitchButton>
         </ScrollView>
         <View style={styles.mapContainer}>
           <MapView 
@@ -92,8 +103,9 @@ export const Map = () => {
               }}
           >
             {
-              obstaculos.length !== 0 && obstaculos.map((obs) => (
-                <Marker 
+              obstaculosFiltrados.length !== 0 && obstaculosFiltrados.map((obs) => (
+                <Marker
+                key={obs.id}
                 coordinate={{latitude: obs.latitude, longitude: obs.longitude}} 
                 pinColor={obs.gravidade === 'inacessivel' ? '#D83025' : obs.gravidade === 'intermediario' ? '#FABD03' : '#109D57'}
                 title={obs.categoria}
@@ -102,7 +114,6 @@ export const Map = () => {
                 accessible={true}
                 accessibilityLabel={`Obstáculo: ${obs.categoria}. ${obs.gravidade}. Descrição: ${obs.descricao}`}
                 >
-
                 </Marker>
               ))
             }
