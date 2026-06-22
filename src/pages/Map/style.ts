@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     paddingVertical: 70,
-    backgroundColor: '#E2E2E2',
+    backgroundColor: '#F8F9FA',
   },
 
   title: {
@@ -54,11 +54,13 @@ export const styles = StyleSheet.create({
   },
 
   accessibilityLevelCaption: {
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#FFF',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     width: '100%',
+    borderColor: '#3B75B0',
+    borderWidth:1,
     marginVertical: 8,
     borderRadius: 25,
     paddingVertical: 16

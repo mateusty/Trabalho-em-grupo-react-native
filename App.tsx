@@ -4,9 +4,11 @@ import { Routers } from './src/router';
 import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import { useEffect } from 'react';
+import { useCallback } from 'react'; // Importado useCallback
+import { View } from 'react-native'; // Importado View
 import * as SplashScreen from 'expo-splash-screen';
 
+// Garante que a splash fique travada no início
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -15,9 +17,9 @@ export default function App() {
     'Montserrat-Regular': Montserrat_400Regular,
   });
 
-  useEffect(() => {
+  const onLayoutRootView = useCallback(async () => {
     if (fontsCarregadas) {
-      SplashScreen.hideAsync(); 
+      await SplashScreen.hideAsync(); 
     }
   }, [fontsCarregadas]);
 
@@ -26,11 +28,14 @@ export default function App() {
   }
 
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <Routers />
-        <Toast />
-      </NavigationContainer>
-    </AuthProvider>
+    // Colocamos essa View por fora de tudo. Quando ela renderizar as rotas, ela avisa o onLayout
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <AuthProvider>
+        <NavigationContainer>
+          <Routers />
+          <Toast />
+        </NavigationContainer>
+      </AuthProvider>
+    </View>
   );
 }
