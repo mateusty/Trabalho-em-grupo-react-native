@@ -7,10 +7,11 @@ import { Ionicons } from '@expo/vector-icons';
 import SwitchButton from '../../components/SwitchButton';
 import { useEffect, useRef, useState } from 'react';
 import { obterObstaculos } from '../../services/obstaculoService';
-import { DisabilityType, DisabilityTypeByCategory, Obstacle } from '../../types/obstacle';
+import { DisabilityType, Obstacle } from '../../types/obstacle';
 import { Coordenadas } from '../../types/coordenadas';
 import { obterLocalizacao } from '../../services/localizacaoService';
 import { HeaderHome } from '../../components/HeaderHome';
+import { DisabilityTypeByCategory } from '../../utils/util';
 
 export const Map = () => {
 
