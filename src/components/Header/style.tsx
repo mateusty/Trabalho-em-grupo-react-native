@@ -2,11 +2,11 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     headerContainer: {
-        paddingTop: 24,
+        paddingTop: 28,
         paddingHorizontal: 16,
         height: 96,
-        backgroundColor: '#E2E2E2',
-        borderBottomColor: '#777777',
+        backgroundColor: '#F8F9FA',
+        borderBottomColor: '#E2E2E2',
         borderBottomWidth: 1,
         display: 'flex',
         flexDirection: 'row',
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
 
     headerText: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat-Bold',
         color: '#494949'
     },
 

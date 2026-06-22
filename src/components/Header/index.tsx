@@ -21,7 +21,7 @@ export const Header = ({ title }: HeaderProps) => {
           <Text style={styles.headerText}>{title ? title : 'ViaLivre'}</Text>
         </View>
         <Pressable onPress={() => navigate.dispatch(DrawerActions.openDrawer())}>
-            <Ionicons name='list' size={32} color='#494949'/>
+            <Ionicons name='menu-outline' size={32} color='#494949'/>
         </Pressable>
     </View>
   )
