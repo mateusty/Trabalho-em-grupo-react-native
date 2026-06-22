@@ -9,7 +9,12 @@ interface StatsCardProps {
 
 export const StatsCard = ({ value, label, variant }: StatsCardProps) => {
     return (
-        <View style={[styles.card, variant === 'blue' ? styles.cardBlue : styles.cardDark]}>
+        <View 
+            style={[styles.card, 
+            variant === 'blue' ? styles.cardBlue : styles.cardDark]}
+            accessible={true}
+            accessibilityLabel={`${label}: ${value}`}
+        >
             <Text style={styles.value}>{value}</Text>
             <Text style={styles.label}>{label}</Text>
         </View>

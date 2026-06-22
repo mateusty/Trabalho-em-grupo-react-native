@@ -54,18 +54,6 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    botaoGps: {
-        backgroundColor: '#3B75B0',
-        borderRadius: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10
-    },
-    textoBotaoGps: {
-        fontSize: 12,
-        fontFamily: 'Montserrat-Bold',
-        color: 'white',
-    },
     labelCoordenadas:{
         fontSize: 11, 
         color: '#888', 
@@ -149,18 +137,6 @@ export const styles = StyleSheet.create({
          fontSize: 10, 
          fontWeight: 'bold' 
     },
-    botaoEnviar:{
-        backgroundColor: '#3B75B0',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        borderRadius: 12
-    },
-    textoBotaoEnviar:{
-        color: 'white',
-        fontFamily: 'Montserrat-Bold',
-        fontSize: 16
-    },
     modalOverlay: {
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.5)', 
@@ -212,6 +188,7 @@ export const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         color: 'white',
         padding: 20,
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'center'
     }
 })

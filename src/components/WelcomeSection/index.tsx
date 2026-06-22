@@ -7,8 +7,8 @@ interface WelcomeSectionProps {
 
 export const WelcomeSection = ({nome}: WelcomeSectionProps) => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.greeting}>Olá, {nome}</Text>
+        <View style={styles.container} accessible={true}>
+            <Text style={styles.greeting} accessibilityRole="header">Olá, {nome}</Text>
             <Text style={styles.subtitle}> Aqui está o que está acontecendo no seu bairro.</Text>
         </View>
     )

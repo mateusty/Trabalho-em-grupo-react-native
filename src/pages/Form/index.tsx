@@ -40,6 +40,7 @@ export const Form = () => {
   const [enderecoInput, setEnderecoInput] = useState<string>('');
   const [buscandoEndereco, setBuscandoEndereco] = useState<boolean>(false);
   const [enderecoConvertido, setEnderecoConvertido] = useState<string>('');
+  
   const mapaRef = useRef<MapView | null>(null);
   const navigate = useNavigation();
 
@@ -103,31 +104,31 @@ export const Form = () => {
   }
 
   const buscaEndereco = async () => {
-  if (enderecoInput.trim() === '') {
-    Alert.alert('Campo vazio', 'Por favor, digite um endereço válido.');
-    return;
-  }
+    if (enderecoInput.trim() === '') {
+      Alert.alert('Campo vazio', 'Por favor, digite um endereço válido.');
+      return;
+    }
 
-  setBuscandoEndereco(true);
-  const coordenadas = await converterEnderecoEmCoordenadas(enderecoInput);
+    setBuscandoEndereco(true);
+    const coordenadas = await converterEnderecoEmCoordenadas(enderecoInput);
 
-  if (coordenadas) {
-    setLocalizacaoSelecionada(coordenadas);
+    if (coordenadas) {
+      setLocalizacaoSelecionada(coordenadas);
 
-    mapaRef.current?.animateToRegion({
-      ...coordenadas,
-      latitudeDelta: 0.005,
-      longitudeDelta: 0.005,
-    }, 1000);
+      mapaRef.current?.animateToRegion({
+        ...coordenadas,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      }, 1000);
 
-    setEnderecoInput('');
-    setModalEnderecoVisivel(false);
-  } else {
-    Alert.alert('Local não encontrado', 'Não conseguimos converter este endereço em coordenadas. Verifique os dados e tente novamente.');
-  }
-  
-  setBuscandoEndereco(false);
-};
+      setEnderecoInput('');
+      setModalEnderecoVisivel(false);
+    } else {
+      Alert.alert('Local não encontrado', 'Não conseguimos converter este endereço em coordenadas. Verifique os dados e tente novamente.');
+    }
+    
+    setBuscandoEndereco(false);
+  };
 
   const compartilharRelato = async () => {
     try {
@@ -222,7 +223,7 @@ export const Form = () => {
     setFotos([]);
     setEnderecoInput('');
     setEnderecoConvertido('');
-};
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#3B75B0' }} edges={['top']}>
@@ -298,7 +299,7 @@ export const Form = () => {
           <View style={styles.subContainer}>
             <Text style={styles.titulo}>Local</Text>
             <Text style={[styles.subTitulo, {paddingTop: 0}]}>
-              O mapa abaixo já mostra sua posição. Se o obstáculo for em outro lugar da rua, basta tocar no mapa para mudar o marcador.
+              O mapa abaixo já mostra sua posição. Se o obstáculo for em outro lugar da rua, basta tocar no mapa para mudar o marcador ou escrever o endereço clicando em "Digitar endereço".
             </Text>
 
             <View 
@@ -372,12 +373,12 @@ export const Form = () => {
               ADICIONAR FOTO
             </Text>
             <View style={{flexDirection: 'row', gap: 5}}>
-            <TouchableOpacity style={styles.botaoFoto} onPress={fotoCamera}>
+            <TouchableOpacity style={styles.botaoFoto} onPress={fotoCamera} disabled={fotos.length >= 3}>
                 <MaterialIcons name='photo-camera' size={35} color={'#3B75B0'}/>
                 <Text style={[styles.subTitulo, {paddingTop: 5}]}>Tirar foto</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.botaoFoto} onPress={fotoGaleria}>
+            <TouchableOpacity style={styles.botaoFoto} onPress={fotoGaleria} disabled={fotos.length >= 3}>
               <MaterialIcons name='photo' size={35} color={'#3B75B0'}/>
               <Text style={[styles.subTitulo, {paddingTop: 5}]}>Galeria</Text>
             </TouchableOpacity>

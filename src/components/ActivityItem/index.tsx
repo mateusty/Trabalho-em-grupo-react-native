@@ -16,14 +16,19 @@ const severityColor: Record<string, string> = {
 export const ActivityItem = ({item, timeAgo }: ActivityItemProps) => {
     const dotColor = severityColor[item.gravidade] ?? '#717171'
 
+
     return (
-        <View style={styles.container}>
-            <View style={[styles.dot, {backgroundColor: dotColor}]} />
-            <View style={styles.info}>
+        <View 
+            style={styles.container}
+            accessible={true}
+            accessibilityLabel={`Obstáculo relatado: ${item.descricao}. Nível de gravidade: ${item.gravidade}. Publicado ${timeAgo}.`}
+        >
+            <View style={[styles.dot, {backgroundColor: dotColor}]} importantForAccessibility="no"/>
+            <View style={styles.info} importantForAccessibility="no">
                 <Text style={styles.title}>{item.descricao}</Text>
                 <Text style={styles.status}>{item.gravidade}</Text>
             </View>
-            <Text style={styles.time}>{timeAgo}</Text>
+            <Text style={styles.time} importantForAccessibility="no">{timeAgo}</Text>
         </View>
     )
 }

@@ -100,7 +100,7 @@ export const Home = () => {
           <StatsCard value={stats.relatosSemana} label="Relatos esta semana" variant="dark" />
         </View>
         <MapButton onPress={handleMapPress} />
-        <Text style={styles.sectionTitle}>ATIVIDADE RECENTE</Text>
+        <Text style={styles.sectionTitle} accessibilityRole="header">ATIVIDADE RECENTE</Text>
       </View>
     ),
     [user?.nome, stats, handleMapPress]

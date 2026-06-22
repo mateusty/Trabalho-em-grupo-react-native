@@ -121,9 +121,9 @@ export const Configuracoes = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>Configurações</Text>
+      <Text style={styles.header} accessibilityRole="header">Configurações</Text>
 
-      <Text style={styles.sectionTitle}>Permissões</Text>
+      <Text style={styles.sectionTitle} accessibilityRole="header">Permissões</Text>
 
       <PermissionItem
         label="Câmera"
@@ -169,8 +169,15 @@ interface PermissionItemProps {
 }
 
 const PermissionItem = ({ label, icon, description, isGranted, onToggle }: PermissionItemProps) => (
-  <View style={styles.permissionItem}>
-    <Ionicons name={icon} size={24} color="#007AFF" style={styles.permissionIcon} />
+  <View style={styles.permissionItem}
+      accessible={true}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: isGranted }} 
+      accessibilityLabel={`Configuração de permissão para ${label}. Status atual: ${isGranted ? 'ativado' : 'desativado'}.`}
+      accessibilityHint={`Toque duas vezes para alterar o acesso à ${label.toLowerCase()}.`}
+      onTouchEnd={onToggle}
+  >
+    <Ionicons name={icon} size={24} color="#007AFF" style={styles.permissionIcon} importantForAccessibility="no"/>
     <View style={styles.permissionTextContainer}>
       <Text style={styles.permissionLabel}>{label}</Text>
       <Text style={styles.permissionDescription}>{description}</Text>
@@ -181,6 +188,8 @@ const PermissionItem = ({ label, icon, description, isGranted, onToggle }: Permi
       trackColor={{ false: '#ccc', true: '#34C759' }}
       thumbColor={isGranted ? '#fff' : '#f4f3f4'}
       ios_backgroundColor="#ccc"
+      importantForAccessibility="no" 
+      pointerEvents="none"
     />
   </View>
 );
