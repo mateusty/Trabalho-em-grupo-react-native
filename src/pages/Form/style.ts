@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     },
     content: {
         paddingHorizontal: 20,
-        paddingVertical: 70,
+        paddingTop: 20,
+        paddingBottom: 30,
         backgroundColor: '#E2E2E2',
         gap: 15
     },
@@ -204,4 +205,13 @@ export const styles = StyleSheet.create({
         gap: 12,
         width: '100%',
     },
+    headerRegistro:{
+        backgroundColor: '#3B75B0'
+    },
+    tituloHeader:{
+        fontFamily: 'Montserrat-Bold',
+        color: 'white',
+        padding: 20,
+        fontSize: 20
+    }
 })
