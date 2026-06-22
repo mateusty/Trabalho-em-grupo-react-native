@@ -22,7 +22,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export const Form = () => {
-  // const {user} = useAuth();
+  const {user} = useAuth();
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<CategoriaNome>('')
 
   const [localizacaoUsuario, setLocalizacaoUsuario] = useState<Coordenadas>({latitude: 0, longitude: 0});
@@ -151,10 +151,10 @@ export const Form = () => {
 
   const enviarObstaculo = async () =>{
 
-    // if (!user) {
-    //   Alert.alert('Erro de autenticação', 'Você precisa estar logado para registrar um obstáculo.');
-    //   return;
-    // }
+    if (!user) {
+       Alert.alert('Erro de autenticação', 'Você precisa estar logado para registrar um obstáculo.');
+       return;
+     }
     if (categoriaSelecionada === '') {
       Alert.alert('Categoria obrigatória', 'Por favor, selecione uma categoria para o obstáculo.');
       return;
@@ -175,7 +175,7 @@ export const Form = () => {
     setEnviando(true)
 
     const dadosCriarObstaculo:DadosObstaculo = {
-      profile_id: 'a9cdc393-c0f0-4480-b4a6-28b605592119',
+      profile_id: user.id,
       categoria: categoriaSelecionada,
       latitude: localizacaoSelecionada.latitude,
       longitude: localizacaoSelecionada.longitude,
