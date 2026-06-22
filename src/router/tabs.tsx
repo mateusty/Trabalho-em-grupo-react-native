@@ -8,62 +8,81 @@ import { Map } from '../pages/Map';
 import { Obstacles } from '../pages/Obstacles';
 import { Ionicons } from '@expo/vector-icons';
 import { Form } from '../pages/Form';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './styles'; 
 
 const Tab = createBottomTabNavigator<ParametrosRotasTabs>();
 
 export function TabsRouter() {
-
+  
   const insets = useSafeAreaInsets();
 
-
   return (
-    <Tab.Navigator screenOptions={{
-      headerShown: false,
-      tabBarShowLabel: false,
-      tabBarItemStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      tabBarStyle: {
-        borderTopWidth: 1,
-        borderColor: '#777',
-        backgroundColor: '#E2E2E2',
-        paddingBottom: insets.bottom,
-        height: 50 + insets.bottom,
-        justifyContent: 'center',
-      },
-      tabBarActiveTintColor: '#3B75B0',
-      tabBarInactiveTintColor: '#494949',
-    }}>
+    <Tab.Navigator 
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: true, 
+        tabBarLabelStyle: styles.tabBarLabel,
+        tabBarItemStyle: styles.tabBarItem,
+        tabBarIconStyle: styles.tabBarIconGlobal,
+        tabBarStyle: [
+          styles.tabBarContainer,
+          {
+            paddingBottom: insets.bottom,
+            height: 70 + insets.bottom,
+          }
+        ],
+        tabBarActiveTintColor: '#3B75B0',
+        tabBarInactiveTintColor: '#777777',
+      }}
+    >
+      <Tab.Screen 
+        name="TabsHome" 
+        component={Home} 
+        options={{
+          tabBarLabel: 'Início',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name='home-outline' color={color} size={size + 4} />
+          )
+        }}
+      />
 
-      <Tab.Screen name="TabsHome" component={Home} options={{
-        tabBarIcon: ({focused, color, size}) => (
-          <Ionicons name={!focused ? 'home-outline' : 'home'} color={color} size={size + 4} />
-        )
-      }}/>
+      <Tab.Screen 
+        name="TabsObstaculos" 
+        component={Obstacles} 
+        options={{
+          tabBarLabel: 'Ocorrências',
+          tabBarActiveTintColor: '#D83025',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name='warning-outline' color={color} size={size + 4} />
+          )
+        }}
+      />
 
-      <Tab.Screen name="TabsObstaculos" component={Obstacles} options={{
-        tabBarActiveTintColor: '#D83025',
-        tabBarIcon: ({focused, color, size}) => (
-          <Ionicons name={!focused ? 'warning-outline' : 'warning'} color={color} size={size + 4} />
-        )
-      }}/>
-
-      <Tab.Screen name="TabsForm" component={Form} options={{
-        tabBarIcon: () => (
-            <View style={{borderRadius: '50%', height: 58, width: 58, backgroundColor: '#E65E2A', alignItems: 'center', justifyContent: 'center', boxShadow: '0px 0px 10px #E65E2A'}}>
-              <Ionicons name="add" color="#1A1A1A" size={42}/>
+      <Tab.Screen 
+        name="TabsForm" 
+        component={Form} 
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => (
+            <View style={styles.botaoFlutuante}>
+              <Ionicons name="add" color="white" size={35}/>
             </View>
-        )
-      }}/>
+          )
+        }}
+      />
 
-      <Tab.Screen name="TabsMapa" component={Map} options={{
-        tabBarActiveTintColor: '#109D57',
-        tabBarIcon: ({focused, color, size}) => (
-          <Ionicons name={!focused ? 'location-outline' : 'location'} color={color} size={size + 4} />
-        )
-      }}/>
+      <Tab.Screen 
+        name="TabsMapa" 
+        component={Map} 
+        options={{
+          tabBarLabel: 'Mapa',
+          tabBarActiveTintColor: '#109D57',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name='location-outline' color={color} size={size + 4} />
+          )
+        }}
+      />
 
       <Tab.Screen
         name="OpenDrawer"
@@ -73,13 +92,14 @@ export function TabsRouter() {
             e.preventDefault();
             navigation.dispatch(DrawerActions.openDrawer());
           },
-        })} options={{
-        tabBarIcon: ({color, size}) => (
-          <Ionicons name="list" color={color} size={size + 4} />
-        )
-      }}
+        })} 
+        options={{
+          tabBarLabel: 'Menu',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="menu-outline" color={color} size={size + 4} />
+          )
+        }}
       />
-
     </Tab.Navigator>
   );
 }
