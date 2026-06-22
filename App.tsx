@@ -4,19 +4,25 @@ import { Routers } from './src/router';
 import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import { ActivityIndicator, View } from 'react-native';
+import { useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [fontsCarregadas] = useFonts({
     'Montserrat-Bold': Montserrat_700Bold,
     'Montserrat-Regular': Montserrat_400Regular,
   });
 
+  useEffect(() => {
+    if (fontsCarregadas) {
+      SplashScreen.hideAsync(); 
+    }
+  }, [fontsCarregadas]);
+
   if (!fontsCarregadas) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#494949" />
-      </View>
-    );
+    return null;
   }
 
   return (

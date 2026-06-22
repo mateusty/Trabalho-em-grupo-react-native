@@ -6,9 +6,8 @@ export const styles = StyleSheet.create({
     },
 
     container: {
-        height: 80,
+        height: 85,
         paddingTop: 32,
-        marginBottom: 2,
         paddingHorizontal: 16,
         backgroundColor: '#3B75B0',
         flexDirection: 'row',

@@ -3,9 +3,9 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         borderBottomWidth: 1,
-        borderRadius: 15,
-        borderBottomColor: '#1A1A1A',
+        borderBottomColor: '#ECECF3',
         padding: 15,
+        backgroundColor: '#FFF',
 
     },
     leftBar: {
@@ -21,12 +21,12 @@ export const styles = StyleSheet.create({
         alignSelf: 'flex-start',
     },
     gravidade: {
-        color:'#FFF',
+        color: '#FFF',
         fontSize: 20,
         borderRadius: 25,
         padding: 10,
         alignSelf: 'flex-start',
-        fontWeight:'500'
+        fontWeight: '500'
     },
     wrapper: {
         flexDirection: 'column',

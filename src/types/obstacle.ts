@@ -45,9 +45,3 @@ export interface DadosObstaculo {
     fotos: string[];
 }
 
-export const DisabilityTypeByCategory: Record<DisabilityType, ObstacleCategory[]> = {
-  cadeirante: ['rampa_bloqueada', 'calcada_obstruida', 'elevador_quebrado', 'buraco'],
-  mobilidade_reduzida: ['rampa_bloqueada', 'calcada_obstruida', 'elevador_quebrado', 'buraco'],
-  visual: ['objeto_aereo', 'semaforo_quebrado', 'calcada_obstruida', 'buraco'],
-  outro: ['falta_de_acessibilidade', 'outro'],
-}

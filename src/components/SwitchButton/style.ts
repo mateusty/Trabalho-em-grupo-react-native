@@ -3,13 +3,15 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
 
 button: {
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#FFF',
     borderRadius: 24,
     paddingHorizontal: 16,
     paddingVertical: 12,
+    borderColor:'#3B75B0',
+    borderWidth:1
 },
 buttonOn: {
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#3B75B0',
 },
 textOn: {
     fontWeight: '600',

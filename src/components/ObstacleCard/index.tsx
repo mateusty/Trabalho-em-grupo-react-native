@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import { ObstacleCardType } from '../../types/obstacle'
 import { styles } from './style'
+import { formatarData } from '../../utils/util'
 
 export default function ObstacleCard({ categoria, gravidade, descricao, data_criacao }: ObstacleCardType) {
     function corGravidade(gravidade: string) {
@@ -8,6 +9,7 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
         if (gravidade === 'intermediario') return '#FABD03'
         if (gravidade === 'inacessivel') return '#DB3025'
     }
+
     function tituloCategoria(categoria: string) {
         if (categoria === 'buraco') return 'Buraco'
         if (categoria === 'rampa_bloqueada') return 'Rampa bloqueada' 
@@ -24,8 +26,12 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
         if (gravidade === 'intermediario') return 'Intermediário'
         if (gravidade === 'inacessivel') return 'Inacessível'
     }
+
     return (
-        <View style={styles.container}>
+        <View
+        accessibilityLabel={`Obstáculo: ${tituloCategoria(categoria)}, gravidade ${tituloGravidade(gravidade)}, ${descricao}, registrado em ${formatarData(data_criacao)}`}
+        accessible={true}
+        style={styles.container}>
 
             <View style={[styles.leftBar, { backgroundColor: corGravidade(gravidade) }]}>
             </View>
@@ -42,7 +48,7 @@ export default function ObstacleCard({ categoria, gravidade, descricao, data_cri
                     {tituloGravidade(gravidade)}
                 </Text>
                 <Text style={styles.data}>
-                    {data_criacao}
+                    {formatarData(data_criacao)}
                 </Text>
 
             </View>
