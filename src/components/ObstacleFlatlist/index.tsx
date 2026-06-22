@@ -27,7 +27,18 @@ export default function ObstacleFlatlist({ filter, showFixed = false }: Obstacle
     .filter(obstacle => !filter || DisabilityTypeByCategory[filter].includes(obstacle.categoria))
 
 
-  if (loading) return <ActivityIndicator />
+  if (loading) {
+    return (
+      <View 
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        accessible={true}
+        accessibilityRole="progressbar" 
+        accessibilityLabel="Carregando lista de obstáculos, por favor aguarde."
+      >
+        <ActivityIndicator size="large" color="#3B75B0" />
+      </View>
+    )
+  }
 
   return (
     <>
