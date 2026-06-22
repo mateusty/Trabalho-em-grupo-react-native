@@ -8,7 +8,7 @@ import { Map } from '../pages/Map';
 import { Obstacles } from '../pages/Obstacles';
 import { Ionicons } from '@expo/vector-icons';
 import { Form } from '../pages/Form';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles'; 
 
 const Tab = createBottomTabNavigator<ParametrosRotasTabs>();
@@ -64,8 +64,9 @@ export function TabsRouter() {
         component={Form} 
         options={{
           tabBarLabel: '',
+          tabBarAccessibilityLabel: 'Reportar novo obstáculo',
           tabBarIcon: () => (
-            <View style={styles.botaoFlutuante}>
+            <View style={styles.botaoFlutuante} importantForAccessibility="no">
               <Ionicons name="add" color="white" size={35}/>
             </View>
           )
@@ -95,6 +96,7 @@ export function TabsRouter() {
         })} 
         options={{
           tabBarLabel: 'Menu',
+          tabBarAccessibilityLabel: 'Menu de opções lateral',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="menu-outline" color={color} size={size + 4} />
           )
